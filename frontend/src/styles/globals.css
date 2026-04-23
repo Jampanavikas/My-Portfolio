@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f1f5f9;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --blue-pale: #eff6ff;
+  --purple: #7c3aed;
+  --purple-pale: #f5f3ff;
+  --green: #059669;
+  --green-pale: #ecfdf5;
+  --amber: #d97706;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.05);
+  --shadow-xl: 0 20px 40px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  /* Snap the scroll container section by section */
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  min-height: 100%;
+}
+
+/* Every section snaps to the top of the viewport */
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;   /* never skip a section, even on fast swipe */
+  min-height: 100vh;
+}
+
+::selection { background: rgba(37,99,235,0.15); color: #1e40af; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--blue-light); border-radius: 3px; }
+
+@layer components {
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-hover {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  }
+  .card-hover:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-3px);
+    border-color: var(--blue-light);
+  }
+
+  .badge {
+    @apply text-xs px-3 py-1 rounded-full font-mono font-medium;
+    background: var(--blue-pale);
+    color: var(--blue);
+    border: 1px solid rgba(37,99,235,0.15);
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-2;
+    color: var(--text);
+  }
+
+  .section-title span {
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-subtitle {
+    @apply text-sm font-mono mb-12;
+    color: var(--text-muted);
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200 text-white inline-flex items-center gap-2;
+    background: linear-gradient(135deg, var(--blue), var(--purple));
+    box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37,99,235,0.4);
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200 inline-flex items-center gap-2;
+    border: 1.5px solid var(--blue);
+    color: var(--blue);
+    background: transparent;
+  }
+  .btn-outline:hover {
+    background: var(--blue-pale);
+    transform: translateY(-2px);
+  }
+
+  .tag {
+    @apply text-xs px-2.5 py-1 rounded-full font-mono;
+    background: var(--blue-pale);
+    color: var(--blue);
+    border: 1px solid rgba(37,99,235,0.12);
+  }
+}

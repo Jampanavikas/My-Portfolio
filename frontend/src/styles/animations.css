@@ -1,0 +1,107 @@
+/* ── Cursor blink (used by JS typewriter in Hero) ───────────────── */
+@keyframes blinkCaret {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Float ──────────────────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+.float { animation: float 6s ease-in-out infinite; }
+
+/* ── Scroll bounce ──────────────────────────────────────────────── */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+  50%       { transform: translateX(-50%) translateY(8px); opacity: 0.4; }
+}
+.scroll-bounce { animation: scrollBounce 2s ease-in-out infinite; }
+
+/* ── Ripple ─────────────────────────────────────────────────────── */
+@keyframes ripple {
+  0%    { transform: scale(0); opacity: 0.5; }
+  100%  { transform: scale(2.5); opacity: 0; }
+}
+.ripple-container { position: relative; overflow: hidden; }
+.ripple-container .ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background: rgba(255,255,255,0.5);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+  margin-left: -50px;
+  margin-top: -50px;
+}
+
+/* ── Scroll reveal ──────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal-left.revealed { opacity: 1; transform: translateX(0); }
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal-right.revealed { opacity: 1; transform: translateX(0); }
+
+/* ── Skill ring ─────────────────────────────────────────────────── */
+.skill-circle circle.progress {
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Education flip card ────────────────────────────────────────── */
+.edu-card { perspective: 1000px; }
+.edu-card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.7s ease;
+}
+.edu-card:hover .edu-card-inner { transform: rotateY(180deg); }
+.edu-card-front,
+.edu-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.edu-card-back { transform: rotateY(180deg); }
+
+/* ── Timeline line ──────────────────────────────────────────────── */
+.timeline-line { transform-origin: top center; }
+
+/* ── Chatbot typing dots ────────────────────────────────────────── */
+@keyframes dotPulse {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%            { transform: scale(1.0); opacity: 1.0; }
+}
+.typing-dot:nth-child(1) { animation: dotPulse 1.2s 0s infinite; }
+.typing-dot:nth-child(2) { animation: dotPulse 1.2s 0.2s infinite; }
+.typing-dot:nth-child(3) { animation: dotPulse 1.2s 0.4s infinite; }
+
+/* ── Hero dots grid ─────────────────────────────────────────────── */
+.hero-dots {
+  background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── Gradient border ────────────────────────────────────────────── */
+.accent-border-left {
+  border-left: 3px solid;
+  border-image: linear-gradient(to bottom, #2563eb, #7c3aed) 1;
+}
+
+/* ── Shimmer loading ────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}

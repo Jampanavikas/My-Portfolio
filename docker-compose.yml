@@ -1,0 +1,20 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      # IMPORTANT: set this in your deploy environment (do not commit secrets)
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      # If you deploy on a domain, set this to that domain (scheme + host)
+      ALLOWED_ORIGIN: ${ALLOWED_ORIGIN:-http://localhost}
+    # No host port mapping; frontend nginx proxies to this service internally.
+
+  frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "3200:80"
